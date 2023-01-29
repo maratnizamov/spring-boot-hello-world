@@ -22,11 +22,17 @@ pipeline {
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                    bat 'docker login -u maratnizamov -p %dockerhubpwd%'
-}
+                }
                    bat 'docker push maratnizamov/app'
                 }
             }
         }
-
+        stage('Deploy to k8s'){
+            steps{
+                script{
+                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
+                }
+            }
+        }
     }
 }
