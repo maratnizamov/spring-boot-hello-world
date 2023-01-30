@@ -1,6 +1,20 @@
-# Spring Boot Hello World
+# Marat Nizamov's test task
 
-**A simple Spring Boot 2.x app to send hello world message to a user**
+Recently, I was asked to do a test task that involved setting up a local environment for application development and deployment. The objective was to create a continuous integration and continuous delivery (CI/CD) pipeline to automate the process of building and deploying a Spring Boot application to a Kubernetes cluster.
+
+The first step was to install Minikube, a local Kubernetes cluster, on my machine. After this, I installed Jenkins, an open-source automation server, and configured it to work with the Minikube cluster. This allowed Jenkins to access the cluster and build Docker images. Check ```Dockerfile``` for details.
+
+Next, I chose a simple Spring Boot application and added the Spring Boot Actuator to it. Most configuration was done in ```POM.xml```. This gave the application several production-ready features such as health and metrics endpoints.
+
+To create the CI/CD pipeline, I used Jenkins to automate the process of building a Docker image of the application using Maven, pushing the image to Docker Hub, and deploying it to the Minikube cluster. The pipeline was defined in a ```Jenkinsfile``` located in my repository. K8s deploy manifest is ```deploymentservice.yaml```
+
+Finally, I added readiness and liveness probes to the endpoints of the Spring Boot Actuator. These probes ensured that the application was healthy and available to handle incoming requests.
+
+In conclusion, the project was a success and I was able to successfully create a CI/CD pipeline for a Spring Boot application using Minikube and Jenkins. The pipeline ensured that the application was built and deployed in an efficient and automated manner.
+
+# Below you may find an info about application:
+
+**A simple Spring Boot app to send hello world message to a user**
 
 ## How to Run Application
 
